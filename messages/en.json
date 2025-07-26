@@ -160,6 +160,12 @@
     "subtitle": "Real results for real clients",
     "featured": {
       "title": "Featured Success Story",
+      "description": "How we helped a tech startup overcome complex legal challenges",
+      "benefit1": "Protected intellectual property rights",
+      "benefit2": "Resolved complex legal dispute",
+      "benefit3": "Secured additional company funding",
+      "result": "Exceptional Result",
+      "resultDescription": "Successfully defended IP rights and secured favorable settlement worth $2M",
       "company": "TechStart Inc.",
       "challenge": "Facing complex IP litigation",
       "solution": "Comprehensive IP strategy and litigation support",
@@ -178,6 +184,9 @@
         "title": "Manufacturing Compliance",
         "description": "Regulatory compliance and risk management"
       }
+    },
+    "industries": {
+      "title": "Industries We Serve"
     },
     "testimonials": {
       "title": "What Our Clients Say",

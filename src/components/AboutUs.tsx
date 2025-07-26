@@ -4,6 +4,7 @@ import {useTranslations} from 'next-intl';
 import { motion } from 'framer-motion';
 import HeroSection from '@/components/HeroSection';
 import { useState, useEffect } from 'react';
+import { Handshake, Star, Rocket, Target, Users, Award, Clock, TrendingUp } from 'lucide-react';
 
 export default function AboutUs() {
   const t = useTranslations();
@@ -11,23 +12,23 @@ export default function AboutUs() {
   useEffect(() => { setMounted(true); }, []);
 
   const values = [
-    { key: 'integrity', icon: '🤝' },
-    { key: 'excellence', icon: '⭐' },
-    { key: 'innovation', icon: '🚀' },
-    { key: 'clientFocus', icon: '🎯' }
+    { key: 'integrity', icon: Handshake },
+    { key: 'excellence', icon: Star },
+    { key: 'innovation', icon: Rocket },
+    { key: 'clientFocus', icon: Target }
   ];
 
   const teamMembers = [
-    { key: 'sarah', image: '👩‍💼' },
-    { key: 'michael', image: '👨‍💼' },
-    { key: 'emily', image: '👩‍💼' }
+    { key: 'sarah', image: Users },
+    { key: 'michael', image: Users },
+    { key: 'emily', image: Users }
   ];
 
   const stats = [
-    { key: 'clients', label: 'Happy Clients' },
-    { key: 'cases', label: 'Cases Won' },
-    { key: 'years', label: 'Years Experience' },
-    { key: 'successRate', label: 'Success Rate' }
+    { key: 'clients', label: 'Happy Clients', icon: Users },
+    { key: 'cases', label: 'Cases Won', icon: Award },
+    { key: 'years', label: 'Years Experience', icon: Clock },
+    { key: 'successRate', label: 'Success Rate', icon: TrendingUp }
   ];
 
   // Animation variants for values cards
@@ -117,66 +118,48 @@ export default function AboutUs() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {values.map((value, index) => (
-              <motion.div 
-                key={value.key} 
-                className="text-center border-2 border-gray-500 dark:border-cyan-500    rounded-lg p-6 bg-cyan-50 dark:bg-cyan-950   shadow-lg hover:shadow-2xl transition-all duration-100 group cursor-pointer hover:bg-obsidian hover:text-pure-white"
-                variants={cardVariants}
-                whileHover={{ 
-                  y: -10,
-                  scale: 1.05,
-                  backgroundColor: 'var(--obsidian)',
-                  color: 'var(--pure-white)',
-                  borderColor: 'var(--obsidian)',
-                  borderWidth: '1px'
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <motion.div 
-                  className="text-6xl mb-6 group-hover:text-pure-mint text-gray-700 dark:text-cyan-100"
-                  variants={iconVariants}
-                  whileHover="hover"
+            {values.map((value, index) => {
+              const IconComponent = value.icon;
+              return (
+                <motion.div
+                  key={value.key}
+                  className="text-center border border-gray-500 dark:border-cyan-500 rounded-lg p-6 bg-cyan-50 dark:bg-cyan-950 shadow-lg hover:shadow-2xl transition-all duration-100 group cursor-pointer hover:bg-obsidian hover:text-pure-white"
+                  variants={cardVariants}
+                  whileHover={{ 
+                    y: -10,
+                    scale: 1.05,
+                    backgroundColor: 'var(--obsidian)',
+                    color: 'var(--pure-white)',
+                    borderColor: 'var(--obsidian)',
+                    borderWidth: '1px'
+                  }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  {value.icon}
+                  <motion.div
+                    className="text-6xl mb-6 group-hover:text-pure-mint flex justify-center"
+                    variants={iconVariants}
+                    whileHover="hover"
+                  >
+                    <IconComponent size={48} className="text-cape-cod group-hover:text-pure-mint" />
+                  </motion.div>
+                  <h3 className="text-xl font-darker-grotesque font-bold text-cape-cod mb-4 group-hover:text-pure-white">
+                    {t(`about.values.items.${value.key}.title`)}
+                  </h3>
+                  <p className="text-gray-600 group-hover:text-pure-white leading-relaxed">
+                    {t(`about.values.items.${value.key}.description`)}
+                  </p>
                 </motion.div>
-                
-                <motion.h3 
-                  className="text-2xl font-darker-grotesque text-cyan-800 dark:text-cyan-100 font-bold text-cape-cod mb-4 group-hover:text-pure-white transition-colors duration-300"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.2 + index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  {t(`about.values.items.${value.key}.title`)}
-                </motion.h3>
-                
-                <motion.p 
-                  className="text-cyan-800 dark:text-cyan-500 group-hover:text-gray-200 transition-colors duration-300 leading-relaxed"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.3 + index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  {t(`about.values.items.${value.key}.description`)}
-                </motion.p>
-                
-                {/* Decorative element */}
-                <motion.div 
-                  className="w-0 h-1 bg-pure-mint dark:bg-cyan-300 mt-4 mx-auto group-hover:w-16 transition-all duration-500"
-                  initial={{ width: 0 }}
-                  whileHover={{ width: "4rem" }}
-                />
-              </motion.div>
-            ))}
+              );
+            })}
           </motion.div>
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-16">
+          {/* Team Section */}
+          <section className="py-16 min-h-[700px] flex items-center justify-center">
         <div className="container mx-auto px-6 pt-8">
           <motion.h2 
-            className="text-4xl font-darker-grotesque font-bold text-cape-cod text-center mb-12 "
+            className="text-4xl font-darker-grotesque font-bold text-cape-cod text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -185,77 +168,80 @@ export default function AboutUs() {
             {t('about.team.title')}
           </motion.h2>
           
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, staggerChildren: 0.2 }}
-            viewport={{ once: true }}
-          >
-            {teamMembers.map((member, index) => (
-              <motion.div 
-                key={member.key} 
-                className="text-center p-6 rounded-lg hover:bg-pure-mint hover:shadow-lg transition-all duration-300"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.05 }}
-              >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {teamMembers.map((member, index) => {
+              const IconComponent = member.image;
+              return (
                 <motion.div 
-                  className="text-6xl mb-4"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ duration: 0.3 }}
+                  key={member.key} 
+                  className={`min-h-[500px] overflow-hidden flex flex-col justify-start items-center gap-1 text-center p-4 rounded-lg hover:bg-pure-mint hover:shadow-lg transition-all duration-300 ${index % 2 === 1 ? 'bg-cyan-950 dark:bg-cyan-900'  : ' bg-white dark:bg-cyan-950 shadow-lg'}`}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -10, scale: 1.02 }}
                 >
-                  {member.image}
+                  <motion.div 
+                    className="text-6xl mb-4 min-h-[300px] bg-gray-300 dark:bg-cyan-950 w-full flex items-center justify-center border border-gray-200 dark:border-cyan-500 rounded-lg"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <IconComponent size={80} className="text-pure-white" />
+                  </motion.div>
+                  <h3 className={`text-2xl font-darker-grotesque font-bold text-cape-cod mb-2 ${index % 2 === 1 ? 'text-cyan-50' : 'text-cyan-950'}`}>
+                    {t(`about.team.members.${member.key}.name`)}
+                  </h3>
+                  <p className={` font-semibold mb-2 ${index % 2 === 1 ? 'text-cyan-50' : 'text-cyan-950'}`}>
+                    {t(`about.team.members.${member.key}.role`)}
+                  </p>
+                  <p className={` ${index % 2 === 1 ? 'text-cyan-50' : 'text-cyan-950'}`}>
+                    {t(`about.team.members.${member.key}.description`)}
+                  </p>
                 </motion.div>
-                <h3 className="text-2xl font-darker-grotesque text-gray-700 font-bold text-cape-cod mb-2">
-                  {t(`about.team.members.${member.key}.name`)}
-                </h3>
-                <p className="text-gray-700 font-semibold mb-2">
-                  {t(`about.team.members.${member.key}.role`)}
-                </p>
-                <p className="text-gray-600">
-                  {t(`about.team.members.${member.key}.description`)}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="bg-cape-cod text-pure-white py-16">
+      <section className="py-16 bg-pure-white">
         <div className="container mx-auto px-6">
-          <motion.div 
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, staggerChildren: 0.1 }}
+          <motion.div
+            className="grid grid-cols-2 md:grid-cols-4 gap-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, staggerChildren: 0.2 }}
             viewport={{ once: true }}
           >
-            {stats.map((stat, index) => (
-              <motion.div 
-                key={stat.key}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.1 }}
-              >
-                <motion.div 
-                  className="text-4xl font-darker-grotesque font-bold text-pure-mint mb-2"
-                  whileHover={{ scale: 1.2 }}
-                  transition={{ duration: 0.3 }}
+            {stats.map((stat, index) => {
+              const IconComponent = stat.icon;
+              return (
+                <motion.div
+                  key={stat.key}
+                  className="text-center"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
                 >
-                  {t(`about.stats.${stat.key}`)}
+                  <div className="flex justify-center mb-4">
+                    <IconComponent size={40} className="text-cape-cod" />
+                  </div>
+                  <div className="text-3xl font-bold text-cape-cod mb-2">
+                    {t(`about.stats.${stat.key}`)}
+                  </div>
+                  <div className="text-gray-600 font-medium">
+                    {stat.label}
+                  </div>
                 </motion.div>
-                <p className="text-lg">{stat.label}</p>
-              </motion.div>
-            ))}
+              );
+            })}
           </motion.div>
         </div>
       </section>
+
+  
     </div>
   );
 } 

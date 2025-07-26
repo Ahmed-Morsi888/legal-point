@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-
+import { Building2, FileText, Users, Lightbulb, Home, Scale } from 'lucide-react';
 
 export default function Services() {
   const t = useTranslations();
@@ -12,37 +12,37 @@ export default function Services() {
   const services = [
     {
       key: 'corporate',
-      icon: '🏢',
+      icon: Building2,
       bgColor: 'bg-pure-mint',
       textColor: 'text-cape-cod'
     },
     {
       key: 'contracts',
-      icon: '📄',
+      icon: FileText,
       bgColor: 'bg-obsidian',
       textColor: 'text-pure-white'
     },
     {
       key: 'employment',
-      icon: '👥',
+      icon: Users,
       bgColor: 'bg-cape-cod',
       textColor: 'text-pure-white'
     },
     {
       key: 'intellectual',
-      icon: '💡',
+      icon: Lightbulb,
       bgColor: 'bg-pure-mint',
       textColor: 'text-cape-cod'
     },
     {
       key: 'realEstate',
-      icon: '🏠',
+      icon: Home,
       bgColor: 'bg-obsidian',
       textColor: 'text-pure-white'
     },
     {
       key: 'litigation',
-      icon: '⚖️',
+      icon: Scale,
       bgColor: 'bg-cape-cod',
       textColor: 'text-pure-white'
     }
@@ -76,20 +76,25 @@ export default function Services() {
       <section className="py-16">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => (
-              <div
-                key={service.key}
-                className={`${service.bgColor} ${service.textColor} p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300`}
-              >
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-2xl font-darker-grotesque font-bold mb-4">
-                  {t(`services.cards.${service.key}.title`)}
-                </h3>
-                <p className="text-lg leading-relaxed">
-                  {t(`services.cards.${service.key}.description`)}
-                </p>
-              </div>
-            ))}
+            {services.map((service) => {
+              const IconComponent = service.icon;
+              return (
+                <div
+                  key={service.key}
+                  className={`${service.bgColor} ${service.textColor} p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300`}
+                >
+                  <div className="flex justify-center mb-4">
+                    <IconComponent size={48} className={`${service.textColor}`} />
+                  </div>
+                  <h3 className="text-2xl font-darker-grotesque font-bold mb-4">
+                    {t(`services.cards.${service.key}.title`)}
+                  </h3>
+                  <p className="text-lg leading-relaxed">
+                    {t(`services.cards.${service.key}.description`)}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
