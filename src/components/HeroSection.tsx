@@ -5,10 +5,13 @@ import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { motion, Variants } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 export default function HeroSection() {
   const t = useTranslations();
   const locale = useLocale();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
 
   // Animation variants
   const containerVariants: Variants = {
@@ -90,6 +93,39 @@ export default function HeroSection() {
     t('hero.services.dispute'),
     t('hero.services.employment')
   ];
+
+  if (!mounted) {
+    return (
+      <section className="bg-pure-white min-h-screen">
+        <div className="container mx-auto p-8 border rounded-lg border-gray-300 dark:border-cyan-500">
+          <div className="grid grid-cols-1 lg:grid-cols-5 lg:gap-12 h-[600px] md:h-[700px]">
+            <div className="flex flex-col justify-center space-y-8 col-span-2">
+              <div className="mb-8">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-cape-cod">
+                  {t('hero.brandName')}
+                </h1>
+              </div>
+              <p className="text-lg md:text-xl text-obsidian leading-relaxed max-w-lg">
+                {t('hero.description')}
+              </p>
+            </div>
+            <div className="col-span-3 relative">
+              <div className="relative z-10 h-full flex flex-col justify-center items-center p-8 md:p-12">
+                <div className="text-center mb-8">
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-pure-white mb-4 text-cyan-50 dark:text-cyan-100">
+                    {t('hero.compassTitle')}
+                  </h2>
+                  <p className="text-pure-mint text-lg md:text-xl text-cyan-50 dark:text-cyan-100">
+                    {t('hero.compassSubtitle')}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <motion.section
