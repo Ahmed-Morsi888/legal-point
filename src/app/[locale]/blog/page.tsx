@@ -102,11 +102,11 @@ export default function BlogPage() {
     setIsAuthenticated(true);
   }, []);
 
-  const handleDelete = async (id: string) => {
-    if (confirm(t('blog.deleteConfirm'))) {
-      setBlogPosts(prev => prev.filter(post => post.id !== id));
-    }
-  };
+  // const handleDelete = async (id: string) => {
+  //   if (confirm(t('blog.deleteConfirm'))) {
+  //     setBlogPosts(prev => prev.filter(post => post.id !== id));
+  //   }
+  // };
 
   if (isLoading) {
     return (
@@ -218,13 +218,13 @@ export default function BlogPage() {
 
                     {/* Actions */}
                     <div className="flex gap-2">
-                      <Link href={`/${locale}/blog/${post.id}`} className="flex-1">
+                      <Link href={`/${locale}/blog/${post.id}`} className="flex-1 cursor-pointer ">
                         <Button className={ `cursor-pointer w-full ${index % 2 === 1 ? 'bg-cyan-950 dark:bg-cyan-950' : 'bg-cape-cod text-pure-white'} hover:bg-obsidian hover:text-pure-white transition-colors`}>
                           {t('blog.readMore')}
                         </Button>
                       </Link>
                       
-                      {isAuthenticated && (
+                      {/* {isAuthenticated && (
                         <>
                           <Link href={`/${locale}/blog/${post.id}/edit`}>
                             <Button variant="outline" className={`px-3 ${index % 2 === 1 ? 'bg-cyan-950 dark:bg-cyan-950' : 'bg-cape-cod text-pure-white'}`}>
@@ -239,7 +239,7 @@ export default function BlogPage() {
                             🗑️
                           </Button>
                         </>
-                      )}
+                      )} */}
                     </div>
                   </div>
                 </motion.div>
