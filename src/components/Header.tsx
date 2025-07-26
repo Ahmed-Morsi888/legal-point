@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Button } from '@/components/ui/button';
@@ -19,7 +19,19 @@ export default function Header() {
   const switchLocale = locale === 'en' ? 'ar' : 'en';
   const switchPath = pathname.replace(`/${locale}`, `/${switchLocale}`);
   const [mounted, setMounted] = useState(false);
+  const [activeLink, setActiveLink] = useState<string>('');
+  const [underlineStyle, setUnderlineStyle] = useState({ left: 0, width: 0 });
+  const navRef = useRef<HTMLElement>(null);
+  const linkRefs = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
+
   useEffect(() => { setMounted(true); }, []);
+
+  // Update active link based on pathname
+  useEffect(() => {
+    const currentActiveLink = navigationItems.find(item => isActiveLink(item.href))?.href || '';
+    setActiveLink(currentActiveLink);
+    updateUnderlinePosition(currentActiveLink);
+  }, [pathname, locale]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -47,6 +59,26 @@ export default function Header() {
       return true;
     }
     return false;
+  };
+
+  // Update underline position
+  const updateUnderlinePosition = (href: string) => {
+    const linkElement = linkRefs.current[href];
+    if (linkElement && navRef.current) {
+      const navRect = navRef.current.getBoundingClientRect();
+      const linkRect = linkElement.getBoundingClientRect();
+      
+      setUnderlineStyle({
+        left: linkRect.left - navRect.left,
+        width: linkRect.width
+      });
+    }
+  };
+
+  // Handle link click
+  const handleLinkClick = (href: string) => {
+    setActiveLink(href);
+    updateUnderlinePosition(href);
   };
 
   // Animation variants
@@ -140,7 +172,7 @@ export default function Header() {
         </motion.div>
     
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-6">
+        <nav ref={navRef} className="hidden md:flex space-x-6 relative">
           {navigationItems.map((item, index) => {
             const isActive = isActiveLink(item.href);
             return (
@@ -157,7 +189,9 @@ export default function Header() {
                 }}
               >
                 <Link
+                  ref={(el) => { linkRefs.current[item.href] = el; }}
                   href={item.href}
+                  onClick={() => handleLinkClick(item.href)}
                   className={`transition-colors font-mona-sans relative group ${
                     isActive 
                       ? 'text-pure-mint font-semibold' 
@@ -165,18 +199,25 @@ export default function Header() {
                   }`}
                 >
                   {item.label}
-                  <motion.div
-                    className={`absolute -bottom-1 left-0 h-0.5 bg-pure-mint transition-all duration-300 ${
-                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
-                    }`}
-                    initial={{ width: isActive ? "100%" : 0 }}
-                    animate={{ width: isActive ? "100%" : 0 }}
-                    whileHover={{ width: "100%" }}
-                  />
                 </Link>
               </motion.div>
             );
           })}
+          
+          {/* Animated Underline */}
+          <motion.div
+            className="absolute bottom-0 h-0.5 bg-cyan-950 dark:bg-cyan-50"
+            initial={false}
+            animate={{
+              left: underlineStyle.left,
+              width: underlineStyle.width
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 300,
+              damping: 30
+            }}
+          />
         </nav>
 
         {/* Desktop Actions */}
@@ -259,7 +300,7 @@ export default function Header() {
                     exit={{ rotate: -90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Menu className="h-6 w-6" />
+                    <Menu className="h-6 w-6 bg-cyan-50 dark:bg-cyan-950 text-cyan-950 dark:text-cyan-50 rounded-sm cursor-pointer hover:bg-obsidian hover:text-pure-white transition-colors" />
                   </motion.div>
                 )}
               </AnimatePresence>
