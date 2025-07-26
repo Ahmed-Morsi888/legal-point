@@ -3,9 +3,12 @@
 import {useTranslations} from 'next-intl';
 import { motion } from 'framer-motion';
 import HeroSection from '@/components/HeroSection';
+import { useState, useEffect } from 'react';
 
 export default function AboutUs() {
   const t = useTranslations();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
 
   const values = [
     { key: 'integrity', icon: '🤝' },
@@ -64,6 +67,10 @@ export default function AboutUs() {
       }
     }
   };
+
+  if (!mounted) {
+    return <div className="min-h-screen bg-pure-white"><HeroSection /></div>;
+  }
 
   return (
     <div className="min-h-screen bg-pure-white">

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Button } from '@/components/ui/button';
@@ -18,6 +18,8 @@ export default function Header() {
   const router = useRouter();
   const switchLocale = locale === 'en' ? 'ar' : 'en';
   const switchPath = pathname.replace(`/${locale}`, `/${switchLocale}`);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -113,6 +115,10 @@ export default function Header() {
       }
     }
   };
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <header className="bg-cape-cod container mx-auto text-pure-white p-6">
