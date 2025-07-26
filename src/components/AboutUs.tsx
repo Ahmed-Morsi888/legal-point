@@ -102,7 +102,7 @@ export default function AboutUs() {
       <section className="bg-pure-mint pb-16 border-b border-obsidian bg-obsidian min-h-[600px] flex items-center justify-center">
         <div className="container mx-auto px-6">
           <motion.h2 
-            className="text-4xl font-darker-grotesque font-bold text-cape-cod text-center mb-24"
+            className="text-5xl font-darker-grotesque font-bold text-cape-cod text-center mb-24"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -118,37 +118,36 @@ export default function AboutUs() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {values.map((value, index) => {
+            {values.map((value) => {
               const IconComponent = value.icon;
               return (
-                <motion.div
-                  key={value.key}
-                  className="text-center border border-gray-500 dark:border-cyan-500 rounded-lg p-6 bg-cyan-50 dark:bg-cyan-950 shadow-lg hover:shadow-2xl transition-all duration-100 group cursor-pointer hover:bg-obsidian hover:text-pure-white"
-                  variants={cardVariants}
-                  whileHover={{ 
-                    y: -10,
-                    scale: 1.05,
-                    backgroundColor: 'var(--obsidian)',
-                    color: 'var(--pure-white)',
-                    borderColor: 'var(--obsidian)',
-                    borderWidth: '1px'
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <motion.div
-                    className="text-6xl mb-6 group-hover:text-pure-mint flex justify-center"
-                    variants={iconVariants}
-                    whileHover="hover"
-                  >
-                    <IconComponent size={48} className="text-cape-cod group-hover:text-pure-mint" />
-                  </motion.div>
-                  <h3 className="text-xl font-darker-grotesque font-bold text-cape-cod mb-4 group-hover:text-pure-white">
-                    {t(`about.values.items.${value.key}.title`)}
-                  </h3>
-                  <p className="text-gray-600 group-hover:text-pure-white leading-relaxed">
-                    {t(`about.values.items.${value.key}.description`)}
-                  </p>
-                </motion.div>
+                                 <motion.div
+                   key={value.key}
+                   className="min-h-[250px] flex flex-col justify-center items-center text-center border border-gray-500 dark:border-cyan-500 rounded-lg p-6 bg-cyan-50 dark:bg-cyan-950 shadow-lg hover:shadow-2xl transition-all duration-100 group cursor-pointer hover:bg-obsidian"
+                   variants={cardVariants}
+                   whileHover={{ 
+                     y: -10,
+                     scale: 1.05,
+                     backgroundColor: 'var(--obsidian)',
+                     borderColor: 'var(--obsidian)',
+                     borderWidth: '1px'
+                   }}
+                   whileTap={{ scale: 0.95 }}
+                 >
+                   <motion.div
+                     className="text-6xl mb-6 flex justify-center"
+                     variants={iconVariants}
+                     whileHover="hover"
+                   >
+                     <IconComponent size={48} className="text-cyan-950 dark:text-cyan-50 group-hover:text-cyan-50" />
+                   </motion.div>
+                   <h3 className="text-xl font-darker-grotesque font-bold text-cyan-950 dark:text-cyan-50 mb-4 group-hover:text-cyan-50">
+                     {t(`about.values.items.${value.key}.title`)}
+                   </h3>
+                   <p className="text-gray-600 dark:text-cyan-50 group-hover:text-cyan-50 leading-relaxed">
+                     {t(`about.values.items.${value.key}.description`)}
+                   </p>
+                 </motion.div>
               );
             })}
           </motion.div>
