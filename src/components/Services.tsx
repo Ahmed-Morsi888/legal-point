@@ -1,15 +1,13 @@
 "use client";
 
 import {useTranslations} from 'next-intl';
-import { useLocale } from 'next-intl';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+
 
 export default function Services() {
   const t = useTranslations();
-  const locale = useLocale();
   const router = useRouter();
   const services = [
     {
@@ -49,6 +47,16 @@ export default function Services() {
       textColor: 'text-pure-white'
     }
   ];
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <div className="static-version">...</div>;
+  }
 
   return (
     <div className="min-h-screen bg-pure-white">
