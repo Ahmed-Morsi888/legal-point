@@ -91,7 +91,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Darker Grotesque', sans-serif;
+  font-family: var(--font-mona-sans), 'Darker Grotesque', sans-serif;
 }
 
 /* RTL support */
@@ -127,7 +127,7 @@ body {
 
 /* Arabic font family */
 [dir="rtl"] {
-  font-family: 'Cairo', 'Darker Grotesque', sans-serif;
+  font-family: var(--font-markazi-text), var(--font-mona-sans), 'Darker Grotesque', sans-serif;
 }
 
 @theme inline {

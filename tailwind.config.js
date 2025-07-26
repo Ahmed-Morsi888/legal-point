@@ -66,7 +66,8 @@ export default {
       },
       fontFamily: {
         'darker-grotesque': ['Darker Grotesque', 'sans-serif'],
-        'mona-sans': ['Mona Sans', 'sans-serif'],
+        'mona-sans': ['var(--font-mona-sans)', 'sans-serif'],
+        'markazi-text': ['var(--font-markazi-text)', 'serif'],
         'cairo': ['Cairo', 'sans-serif'],
       },
       keyframes: {
