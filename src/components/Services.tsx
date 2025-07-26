@@ -55,7 +55,7 @@ export default function Services() {
   }, []);
 
   if (!mounted) {
-    return <div className="static-version">...</div>;
+    return null;
   }
 
   return (
