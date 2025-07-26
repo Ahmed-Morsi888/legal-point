@@ -25,10 +25,10 @@ export default function AboutUs() {
   ];
 
   const stats = [
-    { key: 'clients', label: 'Happy Clients', icon: Users },
-    { key: 'cases', label: 'Cases Won', icon: Award },
-    { key: 'years', label: 'Years Experience', icon: Clock },
-    { key: 'successRate', label: 'Success Rate', icon: TrendingUp }
+    { key: 'clients', icon: Users },
+    { key: 'cases', icon: Award },
+    { key: 'years', icon: Clock },
+    { key: 'successRate', icon: TrendingUp }
   ];
 
   // Animation variants for values cards
@@ -69,17 +69,81 @@ export default function AboutUs() {
     }
   };
 
+  // Count animation hook
+  const useCountAnimation = (end: number, duration: number = 2000) => {
+    const [count, setCount] = useState(0);
+    const [isInView, setIsInView] = useState(false);
+
+    useEffect(() => {
+      if (isInView && count < end) {
+        const increment = end / (duration / 16); // 60fps
+        const timer = setTimeout(() => {
+          setCount(prev => Math.min(prev + increment, end));
+        }, 16);
+        return () => clearTimeout(timer);
+      }
+    }, [count, end, duration, isInView]);
+
+    return { count: Math.floor(count), setIsInView };
+  };
+
+  // Stat Item Component
+  const StatItem = ({ stat, index }: { stat: { key: string; icon: React.ComponentType<{ size?: number; className?: string }> }; index: number }) => {
+    const IconComponent = stat.icon;
+    const { count, setIsInView } = useCountAnimation(parseInt(t(`about.stats.${stat.key}`).replace(/,/g, '')), 2500);
+    
+    return (
+      <motion.div
+        className="text-center"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: index * 0.1 }}
+        viewport={{ once: true }}
+        onViewportEnter={() => setIsInView(true)}
+      >
+        <div className="flex justify-center mb-4">
+          <motion.div
+            initial={{ scale: 0, rotate: -180 }}
+            whileInView={{ scale: 1, rotate: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.1 + 0.3 }}
+            viewport={{ once: true }}
+          >
+            <IconComponent size={40} className="text-cape-cod" />
+          </motion.div>
+        </div>
+        <motion.div 
+          className="text-3xl font-bold text-cape-cod mb-2"
+          initial={{ scale: 0.5, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
+          viewport={{ once: true }}
+        >
+          {count.toLocaleString()}
+        </motion.div>
+        <motion.div 
+          className="text-gray-600 font-medium"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: index * 0.1 + 0.7 }}
+          viewport={{ once: true }}
+        >
+          {t(`about.stats.labels.${stat.key}`)}
+        </motion.div>
+      </motion.div>
+    );
+  };
+
   if (!mounted) {
-    return <div className="min-h-screen bg-pure-white"><HeroSection /></div>;
+    return <div className="min-h-[90vh] bg-pure-white"><HeroSection /></div>;
   }
 
   return (
-    <div className="min-h-screen bg-pure-white">
+    <div className="min-h-[90vh] bg-pure-white">
       {/* Hero Section */}
       <HeroSection />
 
       {/* Mission Section */}
-      <section className="py-16">
+      <section className="py-16 min-h-[350px] flex items-center justify-center">
         <div className="container mx-auto px-6">
           <motion.div 
             className="max-w-4xl mx-auto text-center"
@@ -203,42 +267,22 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-pure-white">
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, staggerChildren: 0.2 }}
-            viewport={{ once: true }}
-          >
-            {stats.map((stat, index) => {
-              const IconComponent = stat.icon;
-              return (
-                <motion.div
-                  key={stat.key}
-                  className="text-center"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="flex justify-center mb-4">
-                    <IconComponent size={40} className="text-cape-cod" />
-                  </div>
-                  <div className="text-3xl font-bold text-cape-cod mb-2">
-                    {t(`about.stats.${stat.key}`)}
-                  </div>
-                  <div className="text-gray-600 font-medium">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
-      </section>
+             {/* Stats Section */}
+          <section className="py-16 bg-pure-white min-h-[400px] flex items-center justify-center">
+         <div className="container mx-auto px-6">
+           <motion.div
+             className="grid grid-cols-2 md:grid-cols-4 gap-8"
+             initial={{ opacity: 0, y: 30 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             transition={{ duration: 0.8, staggerChildren: 0.2 }}
+             viewport={{ once: true }}
+           >
+                           {stats.map((stat, index) => (
+                <StatItem key={stat.key} stat={stat} index={index} />
+              ))}
+           </motion.div>
+         </div>
+       </section>
 
   
     </div>

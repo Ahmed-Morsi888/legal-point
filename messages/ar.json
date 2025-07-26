@@ -111,7 +111,13 @@
       "clients": "+500",
       "cases": "+1000",
       "years": "+10",
-      "successRate": "95%"
+      "successRate": "95%",
+      "labels": {
+        "clients": "عملاء سعداء",
+        "cases": "قضايا فازت",
+        "years": "سنوات خبرة",
+        "successRate": "معدل النجاح"
+      }
     }
   },
   "resources": {

@@ -111,7 +111,13 @@
       "clients": "500+",
       "cases": "1000+",
       "years": "10+",
-      "successRate": "95%"
+      "successRate": "95%",
+      "labels": {
+        "clients": "Happy Clients",
+        "cases": "Cases Won",
+        "years": "Years Experience",
+        "successRate": "Success Rate"
+      }
     }
   },
   "resources": {

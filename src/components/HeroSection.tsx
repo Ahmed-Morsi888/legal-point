@@ -96,7 +96,7 @@ export default function HeroSection() {
 
   if (!mounted) {
     return (
-      <section className="bg-pure-white min-h-screen">
+      <section className="bg-pure-white min-h-[90vh]">
         <div className="container mx-auto p-8 border rounded-lg border-gray-300 dark:border-cyan-500">
           <div className="grid grid-cols-1 lg:grid-cols-5 lg:gap-12 h-[600px] md:h-[700px]">
             <div className="flex flex-col justify-center space-y-8 col-span-2">
@@ -129,7 +129,7 @@ export default function HeroSection() {
 
   return (
     <motion.section
-      className="bg-pure-white min-h-screen"
+      className="bg-pure-white min-h-[90vh]"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
