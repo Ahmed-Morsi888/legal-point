@@ -126,7 +126,7 @@ export default function AboutUs() {
                 whileTap={{ scale: 0.95 }}
               >
                 <motion.div 
-                  className="text-6xl mb-6 group-hover:text-pure-mint"
+                  className="text-6xl mb-6 group-hover:text-pure-mint text-gray-700"
                   variants={iconVariants}
                   whileHover="hover"
                 >
@@ -134,7 +134,7 @@ export default function AboutUs() {
                 </motion.div>
                 
                 <motion.h3 
-                  className="text-2xl font-darker-grotesque font-bold text-cape-cod mb-4 group-hover:text-pure-white transition-colors duration-300"
+                  className="text-2xl font-darker-grotesque text-cyan-800 font-bold text-cape-cod mb-4 group-hover:text-pure-white transition-colors duration-300"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.2 + index * 0.1 }}
@@ -144,7 +144,7 @@ export default function AboutUs() {
                 </motion.h3>
                 
                 <motion.p 
-                  className="text-gray-700 group-hover:text-gray-200 transition-colors duration-300 leading-relaxed"
+                  className="text-cyan-800 group-hover:text-gray-200 transition-colors duration-300 leading-relaxed"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.3 + index * 0.1 }}
@@ -202,7 +202,7 @@ export default function AboutUs() {
                 >
                   {member.image}
                 </motion.div>
-                <h3 className="text-2xl font-darker-grotesque font-bold text-cape-cod mb-2">
+                <h3 className="text-2xl font-darker-grotesque text-gray-700 font-bold text-cape-cod mb-2">
                   {t(`about.team.members.${member.key}.name`)}
                 </h3>
                 <p className="text-gray-700 font-semibold mb-2">
