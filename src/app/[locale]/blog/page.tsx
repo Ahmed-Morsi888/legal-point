@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface LocalizedContent {
   title: string;
@@ -32,7 +33,7 @@ export default function BlogPage() {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false); // This would be replaced with real auth
-
+  const router = useRouter();
   // Mock data - in real app, this would come from an API
   useEffect(() => {
     const mockPosts: BlogPost[] = [
@@ -166,11 +167,14 @@ export default function BlogPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {blogPosts.map((post, index) => (
                 <motion.div
+                  whileHover={{ y: -10, scale: 1.05 }}
+                  viewport={{ once: true }}
+                  onClick={() => router.push(`/${locale}/blog/${post.id}`)}
                   key={post.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                  className={`cursor-pointer rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 ${index % 2 === 1 ? 'bg-cyan-950 dark:bg-cyan-900'  : ' bg-white dark:bg-cyan-950 shadow-lg'}`}
                 >
                   {/* Blog Image */}
                   <div className="h-48 bg-gradient-to-br from-pure-mint to-cape-cod flex items-center justify-center">
@@ -184,30 +188,30 @@ export default function BlogPage() {
                       {post.tags.slice(0, 2).map((tag, tagIndex) => (
                         <span
                           key={tagIndex}
-                          className="px-2 py-1 bg-pure-mint text-cape-cod text-xs rounded-full"
+                          className={`px-2 py-1 ${index % 2 === 1 ? 'bg-cyan-50 dark:bg-cyan-950' : 'bg-pure-mint text-cyan-950'} text-xs rounded-full`}
                         >
                           {tag}
                         </span>
                       ))}
                       {post.tags.length > 2 && (
-                        <span className="px-2 py-1 bg-obsidian text-pure-white text-xs rounded-full">
+                        <span className={`px-2 py-1 ${index % 2 === 1 ? 'bg-cyan-50 dark:bg-cyan-950' : 'bg-obsidian text-pure-white'} text-xs rounded-full`}>
                           +{post.tags.length - 2}
                         </span>
                       )}
                     </div>
 
                                           {/* Title */}
-                      <h3 className="text-xl font-bold text-cape-cod mb-3 line-clamp-2">
+                      <h3 className={`text-xl font-bold ${index % 2 === 1 ? 'text-cyan-50 dark:text-cyan-950' : 'text-cyan-950 dark:text-cyan-50'} mb-3 line-clamp-2`}>
                         {post.content[locale as keyof typeof post.content].title}
                       </h3>
 
                       {/* Excerpt */}
-                      <p className="text-obsidian mb-4 line-clamp-3">
+                      <p className={`${index % 2 === 1 ? 'text-cyan-50 dark:text-cyan-950' : 'text-cyan-950 dark:text-cyan-50'} mb-4 line-clamp-3`}>
                         {post.content[locale as keyof typeof post.content].excerpt}
                       </p>
 
                     {/* Meta Info */}
-                    <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                    <div className={`flex items-center justify-between text-sm ${index % 2 === 1 ? 'text-cyan-50 dark:text-cyan-950' : 'text-cyan-950 dark:text-cyan-50'} mb-4`}>
                       <span>{post.author}</span>
                       <span>{new Date(post.createdAt).toLocaleDateString()}</span>
                     </div>
@@ -215,7 +219,7 @@ export default function BlogPage() {
                     {/* Actions */}
                     <div className="flex gap-2">
                       <Link href={`/${locale}/blog/${post.id}`} className="flex-1">
-                        <Button className="w-full bg-cape-cod text-pure-white hover:bg-obsidian transition-colors">
+                        <Button className={ `cursor-pointer w-full ${index % 2 === 1 ? 'bg-cyan-950 dark:bg-cyan-950' : 'bg-cape-cod text-pure-white'} hover:bg-obsidian hover:text-pure-white transition-colors`}>
                           {t('blog.readMore')}
                         </Button>
                       </Link>
@@ -223,13 +227,13 @@ export default function BlogPage() {
                       {isAuthenticated && (
                         <>
                           <Link href={`/${locale}/blog/${post.id}/edit`}>
-                            <Button variant="outline" className="px-3">
+                            <Button variant="outline" className={`px-3 ${index % 2 === 1 ? 'bg-cyan-950 dark:bg-cyan-950' : 'bg-cape-cod text-pure-white'}`}>
                               ✏️
                             </Button>
                           </Link>
                           <Button
                             variant="outline"
-                            className="px-3 text-red-600 hover:bg-red-50"
+                              className={`px-3 ${index % 2 === 1 ? 'bg-cyan-950 dark:bg-cyan-950' : 'bg-cape-cod text-pure-white'} text-red-600 hover:bg-red-50`}
                             onClick={() => handleDelete(post.id)}
                           >
                             🗑️
