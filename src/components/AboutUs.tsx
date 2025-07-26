@@ -80,10 +80,10 @@ export default function AboutUs() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-darker-grotesque font-bold text-cape-cod mb-8">
+            <h2 className="text-4xl font-darker-grotesque font-bold text-cape-cod mb-8 text-gray-700 dark:text-cyan-100">
               {t('about.mission.title')}
             </h2>
-            <p className="text-xl text-gray-700 leading-relaxed">
+            <p className="text-xl text-gray-700 dark:text-cyan-100 leading-relaxed">
               {t('about.mission.description')}
             </p>
           </motion.div>
@@ -113,7 +113,7 @@ export default function AboutUs() {
             {values.map((value, index) => (
               <motion.div 
                 key={value.key} 
-                className="text-center border-2 border-primary  rounded-lg p-6 bg-white shadow-lg hover:shadow-2xl transition-all duration-100 group cursor-pointer hover:bg-obsidian hover:text-pure-white"
+                className="text-center border-2 border-gray-500 dark:border-cyan-500    rounded-lg p-6 bg-cyan-50 dark:bg-cyan-950   shadow-lg hover:shadow-2xl transition-all duration-100 group cursor-pointer hover:bg-obsidian hover:text-pure-white"
                 variants={cardVariants}
                 whileHover={{ 
                   y: -10,
@@ -126,7 +126,7 @@ export default function AboutUs() {
                 whileTap={{ scale: 0.95 }}
               >
                 <motion.div 
-                  className="text-6xl mb-6 group-hover:text-pure-mint text-gray-700"
+                  className="text-6xl mb-6 group-hover:text-pure-mint text-gray-700 dark:text-cyan-100"
                   variants={iconVariants}
                   whileHover="hover"
                 >
@@ -134,7 +134,7 @@ export default function AboutUs() {
                 </motion.div>
                 
                 <motion.h3 
-                  className="text-2xl font-darker-grotesque text-cyan-800 font-bold text-cape-cod mb-4 group-hover:text-pure-white transition-colors duration-300"
+                  className="text-2xl font-darker-grotesque text-cyan-800 dark:text-cyan-100 font-bold text-cape-cod mb-4 group-hover:text-pure-white transition-colors duration-300"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.2 + index * 0.1 }}
@@ -144,7 +144,7 @@ export default function AboutUs() {
                 </motion.h3>
                 
                 <motion.p 
-                  className="text-cyan-800 group-hover:text-gray-200 transition-colors duration-300 leading-relaxed"
+                  className="text-cyan-800 dark:text-cyan-500 group-hover:text-gray-200 transition-colors duration-300 leading-relaxed"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.3 + index * 0.1 }}
@@ -155,7 +155,7 @@ export default function AboutUs() {
                 
                 {/* Decorative element */}
                 <motion.div 
-                  className="w-0 h-1 bg-pure-mint mt-4 mx-auto group-hover:w-16 transition-all duration-500"
+                  className="w-0 h-1 bg-pure-mint dark:bg-cyan-300 mt-4 mx-auto group-hover:w-16 transition-all duration-500"
                   initial={{ width: 0 }}
                   whileHover={{ width: "4rem" }}
                 />
