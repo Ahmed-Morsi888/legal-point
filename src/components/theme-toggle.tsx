@@ -23,7 +23,7 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <Button variant="outline" size="icon" className="bg-cape-cod border-pure-mint text-pure-white hover:bg-obsidian hover:text-pure-white">
+      <Button variant="outline" size="icon" className="bg-cape-cod h-10 w-10 border-cyan-500 dark:border-cyan-500 text-cyan-50 dark:text-cyan-100 hover:bg-obsidian hover:text-cyan-50 dark:hover:text-cyan-100">
         <Sun className="h-[1.2rem] w-[1.2rem]" />
         <span className="sr-only">Toggle theme</span>
       </Button>
