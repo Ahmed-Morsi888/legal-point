@@ -194,12 +194,13 @@ export default function Header() {
           </motion.div>
           
           <motion.div
+            
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <Link
               href={switchPath}
-              className="px-3 py-1 border border-pure-white rounded text-sm hover:bg-pure-white hover:text-cape-cod transition-colors font-mona-sans"
+              className="px-3  min-w-[40px] min-h-[37px] flex items-center justify-center border border-gray-300  dark:border-cyan-900 text-cyan-950 dark:text-cyan-100 rounded-sm text-sm hover:bg-pure-white hover:text-cape-cod transition-colors font-mona-sans"
             >
               {switchLocale.toUpperCase()}
             </Link>
