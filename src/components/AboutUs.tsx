@@ -251,13 +251,13 @@ export default function AboutUs() {
                   >
                     <IconComponent size={80} className="text-pure-white" />
                   </motion.div>
-                  <h3 className={`text-2xl font-darker-grotesque font-bold text-cape-cod mb-2 ${index % 2 === 1 ? 'text-cyan-50' : 'text-cyan-100'}`}>
+                  <h3 className={`text-2xl font-darker-grotesque font-bold text-cape-cod mb-2 ${index % 2 === 1 ? 'text-cyan-50 dark:text-cyan-950' : 'text-cyan-950 dark:text-cyan-50'}`}>
                     {t(`about.team.members.${member.key}.name`)}
                   </h3>
-                  <p className={` font-semibold mb-2 ${index % 2 === 1 ? 'text-cyan-50' : 'text-cyan-100'}`}>
+                  <p className={` font-semibold mb-2 ${index % 2 === 1 ? 'text-cyan-50 dark:text-cyan-950' : 'text-cyan-950 dark:text-cyan-50'}`}>
                     {t(`about.team.members.${member.key}.role`)}
                   </p>
-                  <p className={` ${index % 2 === 1 ? 'text-cyan-50' : 'text-cyan-100'}`}>
+                  <p className={` ${index % 2 === 1 ? 'text-cyan-50 dark:text-cyan-950' : 'text-cyan-950 dark:text-cyan-50'}`}>
                     {t(`about.team.members.${member.key}.description`)}
                   </p>
                 </motion.div>
