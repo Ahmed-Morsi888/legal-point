@@ -203,7 +203,7 @@ export default function Header() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button className="bg-pure-mint text-cape-cod px-4 py-2 rounded-full flex items-center hover:bg-obsidian hover:text-pure-white transition-colors font-mona-sans">
+            <Button variant="outline" onClick={() => router.push('/contact')} className="bg-cyan-950 text-cyan-50 dark:text-cyan-100 dark:bg-cyan-950 border-cyan-800 dark:border-cyan-100 px-4 py-2 rounded-full flex items-center hover:bg-obsidian hover:text-pure-white transition-colors font-mona-sans hover:border-cyan-100 cursor-pointer ">
               {t('navigation.bookCall')} <span className="ml-2">▶</span>
             </Button>
           </motion.div>
