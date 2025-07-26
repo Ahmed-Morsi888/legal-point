@@ -254,10 +254,10 @@ export default function AboutUs() {
                   <h3 className={`text-2xl font-darker-grotesque font-bold text-cape-cod mb-2 ${index % 2 === 1 ? 'text-cyan-50' : 'text-cyan-950'}`}>
                     {t(`about.team.members.${member.key}.name`)}
                   </h3>
-                  <p className={` font-semibold mb-2 ${index % 2 === 1 ? 'text-cyan-50' : 'text-cyan-950'}`}>
+                  <p className={` font-semibold mb-2 ${index % 2 === 1 ? 'text-cyan-50' : 'text-cyan-100'}`}>
                     {t(`about.team.members.${member.key}.role`)}
                   </p>
-                  <p className={` ${index % 2 === 1 ? 'text-cyan-50' : 'text-cyan-950'}`}>
+                  <p className={` ${index % 2 === 1 ? 'text-cyan-50' : 'text-cyan-100'}`}>
                     {t(`about.team.members.${member.key}.description`)}
                   </p>
                 </motion.div>
