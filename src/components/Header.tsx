@@ -106,7 +106,7 @@ export default function Header() {
       opacity: 1,
       height: "auto",
       transition: {
-        duration: 0.3,
+        durati05n: 0.3,
         staggerChildren: 0.1,
         delayChildren: 0.1
       }
