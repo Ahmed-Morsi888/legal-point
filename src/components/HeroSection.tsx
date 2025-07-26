@@ -98,7 +98,7 @@ export default function HeroSection() {
       initial="hidden"
       animate="visible"
     >
-      <div className="container mx-auto  p-8 border rounded-lg border-obsidian">
+      <div className="container mx-auto  p-8 border rounded-lg border-gray-300 dark:border-cyan-500">
         <div className="grid grid-cols-1 lg:grid-cols-5 lg:gap-12 h-[600px] md:h-[700px]">
 
           {/* Left Side - Logo and Content */}
@@ -189,7 +189,7 @@ export default function HeroSection() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 1 }}
             >
-              <div className="w-full h-full bg-gradient-to-br from-cape-cod via-obsidian to-cape-cod opacity-90"></div>
+              <div className="w-full h-full bg-gradient-to-br from-cape-cod via-obsidian to-cape-cod opacity-90 dark:bg-gradient-to-br dark:from-cyan-950 dark:via-cyan-900 dark:to-cyan-950"></div>
               {/* Add a subtle pattern overlay */}
               <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
             </motion.div>
@@ -202,13 +202,13 @@ export default function HeroSection() {
                 variants={textVariants}
               >
                 <motion.h2
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold text-pure-white mb-4"
+                  className="text-4xl md:text-5xl lg:text-6xl font-bold text-pure-white mb-4 text-cyan-50 dark:text-cyan-100"
                   variants={textVariants}
                 >
                   {t('hero.compassTitle')}
                 </motion.h2>
                 <motion.p
-                  className="text-pure-mint text-lg md:text-xl"
+                  className="text-pure-mint text-lg md:text-xl text-cyan-50 dark:text-cyan-100"
                   variants={textVariants}
                 >
                   {t('hero.compassSubtitle')}
