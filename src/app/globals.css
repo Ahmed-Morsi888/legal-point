@@ -24,7 +24,7 @@
   --secondary: #DAFGEF;
   --secondary-foreground: #0A2536;
   --muted: #F3FAFF;
-  --muted-foreground: #39366D;
+  --muted-foreground: #0d3854;
   --accent: #DAFGEF;
   --accent-foreground: #0A2536;
   --destructive: #ef4444;
@@ -32,7 +32,7 @@
   --input: #e5e7eb;
   --ring: #0A2536;
   --chart-1: #DAFGEF;
-  --chart-2: #39366D;
+  --chart-2: #0d3854;
   --chart-3: #0A2536;
   --chart-4: #F3FAFF;
   --chart-5: #DAFGEF;
@@ -55,7 +55,7 @@
   --pure-white: #F3FAFF;
   
   /* Dark mode shadcn/ui variables */
-  --background: #0A2536;
+  --background: #06151f;
   --foreground: #F3FAFF;
   --card: #0A2536;
   --card-foreground: #F3FAFF;
@@ -63,18 +63,18 @@
   --popover-foreground: #F3FAFF;
   --primary: #DAFGEF;
   --primary-foreground: #0A2536;
-  --secondary: #39366D;
+  --secondary: #0d3854;
   --secondary-foreground: #F3FAFF;
-  --muted: #39366D;
+  --muted: #0d3854;
   --muted-foreground: #DAFGEF;
-  --accent: #39366D;
+  --accent: #0d3854;
   --accent-foreground: #F3FAFF;
   --destructive: #ef4444;
-  --border: #39366D;
-  --input: #39366D;
+  --border: #0d3854;
+  --input: #0d3854;
   --ring: #DAFGEF;
   --chart-1: #DAFGEF;
-  --chart-2: #39366D;
+  --chart-2: #0d3854;
   --chart-3: #F3FAFF;
   --chart-4: #0A2536;
   --chart-5: #DAFGEF;
@@ -82,9 +82,9 @@
   --sidebar-foreground: #F3FAFF;
   --sidebar-primary: #DAFGEF;
   --sidebar-primary-foreground: #0A2536;
-  --sidebar-accent: #39366D;
+  --sidebar-accent: #0d3854;
   --sidebar-accent-foreground: #F3FAFF;
-  --sidebar-border: #39366D;
+  --sidebar-border: #0d3854;
   --sidebar-ring: #DAFGEF;
 }
 
